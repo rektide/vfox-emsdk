@@ -1,64 +1,65 @@
 <div align="center">
-<h1>asdf-emsdk</h1>
-<span><a href="https://emscripten.org">Emscripten SDK</a> plugin for <a href="https://asdf-vm.com">asdf version manager</a></span>
+<h1>vfox-emsdk</h1>
+<span><a href="https://emscripten.org">Emscripten SDK</a> plugin for <a href="https://vfox.dev">vfox</a> / <a href="https://mise.jdx.dev">mise</a></span>
 </div>
 <hr />
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/RobLoach/asdf-emsdk/Main%20workflow?style=flat-square)](https://github.com/RobLoach/asdf-emsdk/actions)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-[![License](https://img.shields.io/github/license/RobLoach/asdf-emsdk?style=flat-square&color=brightgreen)](https://github.com/RobLoach/asdf-emsdk/blob/master/LICENSE)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
+[![License](https://img.shields.io/github/license/rektide/vfox-emsdk?style=flat-square&color=brightgreen)](https://github.com/rektide/vfox-emsdk/blob/main/LICENSE)
 
-## Prerequirements
+## Prerequisites
 
-- Make sure you have the required dependencies installed:
-
-  - [git](https://git-scm.com)
+- [git](https://git-scm.com)
+- [python3](https://www.python.org) - required by emsdk
+- [cmake](https://cmake.org) - required for building from source
 
 ## Installation
 
+### With vfox
+
 ```bash
-asdf plugin add emsdk https://github.com/RobLoach/asdf-emsdk.git
-asdf install emsdk latest
+vfox add emsdk --source https://github.com/rektide/vfox-emsdk/archive/refs/tags/v1.0.0.zip
+vfox install emsdk@latest
+vfox use emsdk@latest
+```
+
+### With mise
+
+```bash
+mise plugin install emsdk https://github.com/rektide/vfox-emsdk
+mise install emsdk@latest
+```
+
+Or add to your `.mise.toml`:
+
+```toml
+[tools]
+emsdk = "latest"
 ```
 
 ## Usage
 
-Check [asdf](https://github.com/asdf-vm/asdf) readme for instructions on how to install & manage versions.
-
-```
+```bash
 emsdk --help
 emcc --version
 em++ --version
 ```
 
-## Contributors
+## Environment Variables
 
-Thanks goes to these wonderful people...
+This plugin sets the following environment variables:
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://robloach.net/"><img src="https://avatars1.githubusercontent.com/u/25086?v=4?s=100" width="100px;" alt="Rob Loach"/><br /><sub><b>Rob Loach</b></sub></a><br /><a href="https://github.com/RobLoach/asdf-emsdk/commits?author=RobLoach" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://puddleofcode.com/"><img src="https://avatars3.githubusercontent.com/u/687?v=4?s=100" width="100px;" alt="Michał Kalbarczyk"/><br /><sub><b>Michał Kalbarczyk</b></sub></a><br /><a href="https://github.com/RobLoach/asdf-emsdk/commits?author=fazibear" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/bryan-hoang"><img src="https://avatars.githubusercontent.com/u/27839238?v=4?s=100" width="100px;" alt="Bryan Hoang"/><br /><sub><b>Bryan Hoang</b></sub></a><br /><a href="https://github.com/RobLoach/asdf-emsdk/commits?author=bryan-hoang" title="Code">💻</a></td>
-    </tr>
-  </tbody>
-</table>
+- `EMSDK` - Path to emsdk installation
+- `EM_CONFIG` - Path to .emscripten config
+- `EMSCRIPTEN_ROOT` - Path to emscripten directory
+- `EMCC_CACHE` - Path to emscripten cache
+- `LLVM` / `LLVM_ROOT` / `EM_LLVM_ROOT` - Path to LLVM binaries
+- `BINARYEN` / `BINARYEN_ROOT` / `EM_BINARYEN_ROOT` - Path to binaryen
 
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
+## Notes
 
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+- First installation may take several minutes as emsdk compiles tools from source
+- The `emsdk install` and `emsdk activate` commands are run automatically during installation
 
 ## License
 
-Licensed under the
-[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
+Licensed under the [Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0).
