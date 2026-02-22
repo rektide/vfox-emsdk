@@ -36,6 +36,35 @@ Or add to your `.mise.toml`:
 emsdk = "latest"
 ```
 
+### Using a local checkout (development)
+
+To use a locally checked out copy of this plugin with mise:
+
+```bash
+# Add the local plugin
+mise plugin install emsdk file:///path/to/vfox-emsdk
+
+# Or using a relative path from your project
+mise plugin install emsdk file://../vfox-emsdk
+```
+
+Alternatively, set it in `.mise.toml`:
+
+```toml
+[plugins]
+emsdk = "file:///path/to/vfox-emsdk"
+
+[tools]
+emsdk = "latest"
+```
+
+To update after making changes to the plugin:
+
+```bash
+mise plugin uninstall emsdk
+mise plugin install emsdk file:///path/to/vfox-emsdk
+```
+
 ## Usage
 
 ```bash
